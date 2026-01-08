@@ -54,9 +54,6 @@ class Configuration:
         else:
             
             raise ValueError('protein.initialize_by must be "length", "sequence" or "sequence_file"')
-     
-        self.protein_starting_coords = np.array(protein['starting_position'])
-        self.protein_starting_orientation = protein['orientation']
 
         # grid
         self.bbuffer = config['grid']['buffer']
@@ -103,29 +100,11 @@ class Protein:
     def __init__(self, config):
 
         self.sequence = config.protein_sequence
-        self.length = config.protein_length      
-        self.coords = self.init_coordinates(config)
+        self.length = config.protein_length
 
-    def init_coordinates(self, config):
-
-        coords = np.zeros((self.length, 2), dtype=int)
-        coords[:] = config.protein_starting_coords + np.array([config.bbuffer, config.bbuffer])
-
-        shift_array = np.arange(self.length, dtype=int)
-
-        orientation = config.protein_starting_orientation
-        if orientation == '+x':
-            coords[:, 0] += shift_array
-        elif orientation == '-x':
-            coords[:, 0] -= shift_array
-        elif orientation == '+y':
-            coords[:, 1] += shift_array
-        elif orientation == '-y':
-            coords[:, 1] -= shift_array
-        else:
-            print(f'Error: orientation must be +x, -y, +y, or -y')
-        
-        return coords
+        self.coords = np.zeros((self.length, 2), dtype=int)
+        self.coords[:] = np.array([config.bbuffer, config.bbuffer + self.length // 2])
+        self.coords[:, 0] += np.arange(self.length, dtype=int)
 
 
 class StandardModel:

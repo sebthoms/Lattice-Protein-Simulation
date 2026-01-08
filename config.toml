@@ -4,8 +4,6 @@ j_values_file = "j_values.tsv"
 [protein]
 initialize_by = "length" # "length", "sequence" or "sequence_file"
 length = 30
-starting_position = [0, 0]
-orientation = "+x" # "+x", "-x", "+y" or "-y"
 
 [grid]
 buffer = 4

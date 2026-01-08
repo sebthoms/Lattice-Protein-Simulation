@@ -161,7 +161,7 @@ def fixed_animation(config, temperature, iterations, stride=1, interval=100):
     # ---- Figure ----
     fig, ax = plt.subplots(figsize=(6, 6))
     im = ax.imshow(
-        grids[0],
+        grids[0].T,
         cmap=cmap,
         norm=norm,
         interpolation="nearest"
@@ -181,7 +181,7 @@ def fixed_animation(config, temperature, iterations, stride=1, interval=100):
 )
 
     def update(frame):
-        im.set_data(grids[frame])
+        im.set_data(grids[frame].T)
         step_text.set_text(f"Step {frame * stride}")
         return [im, step_text]
 
