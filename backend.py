@@ -223,34 +223,35 @@ class StandardModel:
         if not self.new_acid_pos_allowed(acid_nr, x_new, y_new):
             return self.energy
 
-        # before energy
+        
         E_before = self.energy
 
-        # --- apply move (temporarily) --- # on grid and protein!
+        # apply move (temporarily) # on grid and protein!
         self.grid[x_old, y_old] = EMPTY_FIELD
         self.grid[x_new, y_new] = acid_nr
         self.protein.coords[acid_nr] = [x_new, y_new]
 
-        # compute local energy after move
         E_after = self.get_energy()
 
         delta_energy = E_after - E_before
 
-        # Metropolis criterion
+        # always accept energy-decreasing moves
         if delta_energy <= 0:
             self.energy = E_after
             return self.energy
 
+        # accept energy-increasing moves with Metropolis probability 
         boltzmann = np.exp(-delta_energy / (K_B * self.temperature))
         if np.random.random_sample() < boltzmann:
             self.energy = E_after
             return self.energy
 
-        # --- reject move: revert --- # on grid and protein!
+        # reject move: revert # on grid and protein!
         self.grid[x_new, y_new] = EMPTY_FIELD
         self.grid[x_old, y_old] = acid_nr
         self.protein.coords[acid_nr] = [x_old, y_old]
 
         self.energy = E_before
         return self.energy
+
 
