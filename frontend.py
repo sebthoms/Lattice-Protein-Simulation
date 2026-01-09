@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.colors import ListedColormap, BoundaryNorm
 
-def fixed_plot(config, temperature, iterations, energy_plot = True, length_plot = True):
+def fixed_temp_plot(config, temperature, iterations, energy_plot = True, length_plot = True):
 
     protein = Protein(config)
     model = StandardModel(config, temperature, protein)
@@ -42,7 +42,7 @@ def fixed_plot(config, temperature, iterations, energy_plot = True, length_plot 
         plt.show()
 
 
-def var_plot(config, start_temp, end_temp, temp_step_nr, iterations, energy_plot = True, length_plot = True):
+def var_temp_plot(config, start_temp, end_temp, temp_step_nr, iterations, energy_plot = True, length_plot = True):
 
     protein = Protein(config)
     model = StandardModel(config, start_temp, protein)
@@ -87,7 +87,7 @@ def var_plot(config, start_temp, end_temp, temp_step_nr, iterations, energy_plot
         plt.show()
 
 
-def var_plot_avg(config, start_temp, end_temp, temp_step_nr, iterations_per_temp, energy_plot = True, length_plot = True):
+def var_temp_plot_avg(config, start_temp, end_temp, temp_step_nr, iterations_per_temp, energy_plot = True, length_plot = True):
 
     protein = Protein(config)
     model = StandardModel(config, start_temp, protein)
@@ -133,7 +133,7 @@ def var_plot_avg(config, start_temp, end_temp, temp_step_nr, iterations_per_temp
 
         plt.show()
 
-def fixed_animation(config, temperature, iterations, stride=1, interval=100):
+def fixed_temp_animation(config, temperature, iterations, stride=1, interval=100):
     protein = Protein(config)
     model = StandardModel(config, temperature, protein)
 
@@ -194,4 +194,5 @@ def fixed_animation(config, temperature, iterations, stride=1, interval=100):
 
     plt.show()
     return ani
+
 
