@@ -150,7 +150,7 @@ def var_temp_plot_avg(config, start_temp, end_temp, temp_step_nr, iterations_per
 
         if save:
             if plot_name is None:
-                plt.savefig(f'varplotavg_energy_length{protein.length}_iterations{iterations-1}_start{start_temp}_end{end_temp}.pdf')
+                plt.savefig(f'varplotavg_energy_length{protein.length}_iterations{iterations_per_temp-1}_start{start_temp}_end{end_temp}.pdf')
             else:
                 plt.savefig(plot_name)
 
@@ -166,7 +166,7 @@ def var_temp_plot_avg(config, start_temp, end_temp, temp_step_nr, iterations_per
 
         if save:
             if plot_name is None:
-                plt.savefig(f'varplotavg_length_length{protein.length}_iterations{iterations-1}_start{start_temp}_end{end_temp}.pdf')
+                plt.savefig(f'varplotavg_length_length{protein.length}_iterations{iterations_per_temp-1}_start{start_temp}_end{end_temp}.pdf')
             else:
                 plt.savefig(plot_name)
 
