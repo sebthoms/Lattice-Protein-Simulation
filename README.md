@@ -26,6 +26,8 @@ Run `run.py`. Feel free to change the protein configuration in `config.toml` and
 
 ## Examples
 
+<img src="examples/fixedplot_energy_length30_iterations50000_temp2.png" width=50% height=50%>
+
 ![Example plot](examples/fixedplot_energy_length30_iterations50000_temp2.png)
 
 ![Example plot](examples/fixedplot_length_length30_iterations50000_temp2.png)
